@@ -9,29 +9,32 @@ public class PlayerMovement : MonoBehaviour
     public float Side = 500f;
     public float Jump = 1000f;
     public float horizontal;
-    public Button Button;
-    public Button Button1;
+    private bool leftmove;
+    private bool rightmove;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        leftmove = false;
+        rightmove = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-
-   
+        if (leftmove)
+        {
+            rb.AddForce(-Side * Time.deltaTime, 0, 0);
+        }
+        if (rightmove)
+        {
+            rb.AddForce(Side * Time.deltaTime, 0, 0);
+        }
         rb.AddForce(0, 0, Forward * Time.deltaTime);
-
-
-        
-        if (Button1.IsPressed) rb.AddForce(Side * Time.deltaTime, 0, 0);
-
-
 
 
         if (Input.GetKey("d")) 
@@ -58,4 +61,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    public void leftpress()
+    {
+        leftmove = true;
+        rightmove = false;
+    }
+    public void rightpress() 
+    {
+        leftmove = false;
+        rightmove = true;
+    }
+    public void leftstop()
+    {
+        leftmove = false;
+    }
+    public void rightstop()
+    {
+        rightmove = false;
+    }
+
+
 }
