@@ -5,6 +5,13 @@ public class MyGameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
     public float RestartDelay = 1f;
+    public GameObject CompleteLevelUI;
+
+    public void CompleteLevel()
+    {
+        CompleteLevelUI.SetActive(true);
+    }
+
     public void EndGame()
     {
         if (gameHasEnded == false)
